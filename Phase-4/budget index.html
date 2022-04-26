@@ -1,0 +1,76 @@
+  <div class="budget-section">
+
+        <div class="budget col col-md col-sm">
+          <h2>budget</h2>
+          <img src="image/money-bag.svg" width="40" alt="" />
+          <p class="amount">$ <span id="budgetAmount">0</span></p>
+        </div>
+
+        <div class="expenses col col-md col-sm">
+          <h2>expenses</h2>
+          <img src="image/accounting.svg" width="40" alt="" />
+          <p class="exp-amount">$ <span id="expensesAmount">0</span></p>
+        </div>
+
+        <div class="balance col col-md col-sm">
+          <h2>balance</h2>
+          <img src="image/law.svg" width="40" alt="" />
+          <p class="amount bala">$ <span id="balanceAmount">0</span></p>
+        </div>
+
+      </div>
+HTML
+In the above code we create three div.
+
+One is to display the budget amount, the other one is to display the balance amount after making a list of all expenses and the last is to display the amount of the total expenses.
+
+let create a form that takes the budget amount.
+
+<div class="budget-form" id="budgetform">
+    <form id="addForm">
+       <label for=""> Make a budget</label> <br />
+       <input type="number" id="number" /> <br />
+       <button type="submit">Add Budget</button>
+     </form>
+</div>
+HTML
+Add a budget amount
+We are going to create a function that takes the budget amount and displays it after the user adds an amount.
+
+In this project we will creating different functions that execute different tasks.
+
+Before we proceed lets us know what is a function?
+
+JavaScript a function allows you to define a block of code, give it a name and then execute it as many times as you want. A function can be defined using function keyword and can be executed using () operator. A function can include one or more parameters.
+
+Knowing what a function is in javaScript and what it does let move further to creating our first function.
+
+const amountInput = document.getElementById("number");
+const addForm = document.getElementById("addForm");
+
+const budgetAmount = document.getElementById("budgetAmount");
+const balanceAmount = document.getElementById("balanceAmount");
+
+function getBudgetAmount(amount) {
+  if (!amount) {
+    amountInput.style.border = "1px solid #b80c09";
+    amountInput.placeholder = "input can not be empty";
+    amountInput.style.color = "#b80c09";
+    setTimeout(() => {
+      amountInput.style.color = "#495057";
+      amountInput.style.border = "1px solid gray";
+    }, 3000);
+  } else {
+    budgetAmount.innerText = amount;
+    balanceAmount.innerText = amount;
+    expenseForm.style.display = "block";
+    budgetform.style.display = "none";
+    editForm.style.display = "none";
+    amountInput.value = "";
+  }
+}
+
+addForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  getBudgetAmount(amountInput.value);
+});
